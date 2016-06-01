@@ -36,7 +36,12 @@
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid/page/:pid/widget", {
+            .when("/user/:userId/website/:websiteId/page", {
+                templateUrl: "views/page/page-list.view.client.html",
+                controller: "PageListController",
+                controllerAs: "model"
+            })
+            .when("/user/:pageId/widget", {
                 templateUrl: "views/widget/widget-list.view.client.html",
                 controller: "WidgetListController",
                 controllerAs: "model"
