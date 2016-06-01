@@ -5,27 +5,21 @@ input.form-control {
 body {
     padding-top: 70px;
 }
-.jga-widget-tool{
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+
+.jga-widget-tool {
     position: absolute;
     right: 15px;
     background-color: white;
     padding-left: 5px;
     padding-bottom: 5px;
     border-bottom-left-radius: 8px;
-    opacity:0.7;
-
-}
-
-div.row.navbar-text.pull-left{
-    margin-left: 40px;
-}
-
-span.glyphicon.glyphicon-plus{
-    margin-right: 15px;
-}
-span.glyphicon.glyphicon-user{
-    margin-right: 15px;
-}
-span.glyphicon.glyphicon-ok{
-    margin-right: 15px;
+    opacity: 0.7;
 }
