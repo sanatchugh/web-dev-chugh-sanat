@@ -5,7 +5,11 @@
 
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
+        vm.userId = $routeParams.userId;
+        vm.websiteId = $routeParams.websiteId;
+        vm.pageId = $routeParams.pageId;
         var pageId = $routeParams.pageId;
+
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
 
