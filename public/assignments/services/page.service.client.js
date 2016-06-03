@@ -4,12 +4,12 @@
         .factory("PageService", PageService);
 
     var pages = [
-        { "_id": "123", "name": "Ferrari",    "websiteId": "456" },
-        { "_id": "234", "name": "Lexus",     "websiteId": "456" },
-        { "_id": "456", "name": "Honda",     "websiteId": "456" },
-        { "_id": "567", "name": "Mercedes", "websiteId": "123" },
-        { "_id": "678", "name": "Teaser",    "websiteId": "789" },
-        { "_id": "321", "name": "Sesto Elemento",  "websiteId": "789" }
+        { "_id": "123", "name": "Ferrari",    "websiteId": "456", "developerId": "234"},
+        { "_id": "234", "name": "Lexus",     "websiteId": "456", "developerId": "234" },
+        { "_id": "456", "name": "Honda",     "websiteId": "456", "developerId": "234" },
+        { "_id": "567", "name": "Mercedes", "websiteId": "123", "developerId": "234" },
+        { "_id": "678", "name": "Teaser",    "websiteId": "789", "developerId": "234"},
+        { "_id": "321", "name": "Sesto Elemento",  "websiteId": "789", "developerId": "234" }
     ];
 
     function PageService() {

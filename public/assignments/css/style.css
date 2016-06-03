@@ -10,6 +10,10 @@ p.navbar-text.pull-right {
     margin-right: 15px;
 }
 
+span.glyphicon.glyphicon-plus{
+    margin-right: 15px;
+}
+
 p.navbar-text.pull-left {
     margin-left: 15px;
 }

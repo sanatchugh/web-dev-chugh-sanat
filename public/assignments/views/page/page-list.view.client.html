@@ -5,7 +5,7 @@
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/page/new" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
                   <span class="glyphicon glyphicon-plus">
                   </span>
                 </a>
@@ -14,15 +14,14 @@
     </div>
 </nav>
 
-{{model.pages}}
 
 <div class="container">
     <ul class="list-group">
         <li ng-repeat="pages in model.pages" class="list-group-item">
-            <a href="#/user/{{pages._id}}/widget">
+            <a href="#/user/{{pages.developerId}}/website/{{pages.websiteId}}/page/{{pages._id}}/widget">
                 {{pages.name}}
             </a>
-            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+            <a href="#/user/{{pages.developerId}}/website/{{pages.websiteId}}/page/{{pages._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
@@ -39,7 +38,7 @@
             <div class="col-xs-3 text-center">
             </div>
             <div class="col-xs-3 text-center">
-                <a href="/assignment/user/profile.html">
+                <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
