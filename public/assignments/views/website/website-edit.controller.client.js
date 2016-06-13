@@ -8,14 +8,40 @@
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.deleteWebsite = deleteWebsite;
+        vm.updateWebsite = updateWebsite;
 
-        function deleteWebsite(websiteId) {
-            var result = WebsiteService.deleteWebsite(websiteId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to delete website";
-            }
+        function init() {
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (response) {
+                    vm.website = response.data;
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
         }
+
+        function deleteWebsite() {
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .then(function (response) {
+                        $location.url("user/"+vm.userId+"/website");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
+        }
+        
+        function updateWebsite(website) {
+            WebsiteService
+                .updateWebsite(vm.websiteId, website)
+                .then(function (response) {
+                    $location.url("user/"+vm.userId+"/website");
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
+        }
+
     }
 })();

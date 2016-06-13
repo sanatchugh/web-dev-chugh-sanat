@@ -23,6 +23,7 @@
             <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
+            <p ng-if="website.description">{{website.description}}</p>
         </li>
     </ul>
 </div>
@@ -30,12 +31,6 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
             <div class="col-xs-3 text-center">
                 <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
