@@ -7,7 +7,7 @@
 
         var api = {
             createPage: createPage,
-            findPageByWebsiteId: findPageByWebsiteId,
+            findAllPagesForWebsite: findAllPagesForWebsite,
             findPageById: findPageById,
             updatePage: updatePage,
             deletePage: deletePage
@@ -19,8 +19,7 @@
             return $http.post(url, page);
         }
 
-
-        function findPageByWebsiteId(websiteId) {
+        function findAllPagesForWebsite(websiteId) {
             var url = "/api/website/" + websiteId + "/page";
             return $http.get(url);
         }

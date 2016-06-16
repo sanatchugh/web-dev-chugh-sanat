@@ -10,7 +10,7 @@
 
         function init() {
             PageService
-                .findPageById(vm.websiteId)
+                .findAllPagesForWebsite(vm.websiteId)
                 .then(function (response) {
                     vm.pages=response.data;
                 },

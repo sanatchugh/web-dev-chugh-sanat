@@ -13,14 +13,57 @@
             "url": "https://www.youtube.com/embed/zRT1hw_-0a8", "websiteId": "789", "developerId": "234" },
     ];
 
-    function WidgetService() {
-        var api = {
-            findWidgetsForPageId: findWidgetsForPageId
-        };
-        return api;
+    var api = {
+        createWidget: createWidget,
+        findWidgetsByPageId: findWidgetsByPageId,
+        findWidgetsById: findWidgetsById,
+        updateWidget: updateWidget,
+        deleteWidget: deleteWidget
+    };
+    return api;
 
-        function findWidgetsForPageId(pageId) {
-            return widgets;
+    function createWidget(pageId, widget) {
+        widget._id = Date.now().valueOf();
+        widgets.push(widget);
+    }
+
+    function findWidgetsByPageId(pageId) {
+        var result = [];
+        for(var i in widgets) {
+            if(widgets[i].pageId === pageId) {
+                result.push(widgets[i]);
+            }
+        }
+        return result;
+        function findWidgetsById(widgetId) {
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    return widgets[i];
+                }
+            }
+            return null;
+        }
+
+        function updateWidget(widgetId, widget) {
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    widgets.remove(i);
+                    widget._id = widgetId;
+                    widgets.push(widget);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function deleteWidget(widgetId) {
+            for(var i in widgets) {
+                if(widgets[i]._id === widgetId) {
+                    widgets.remove(i);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 })();

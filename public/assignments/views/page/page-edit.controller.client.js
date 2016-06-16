@@ -13,7 +13,7 @@
 
         function init(){
             PageService
-                .findPagebyId(vm.pageId)
+                .findPageById(vm.pageId)
                 .then(function (response) {
                     vm.page = response.data;
                 },
@@ -25,7 +25,7 @@
 
         function deletePage() {
             PageService
-                .deleteWebsite(pageId)
+                .deletePage(vm.pageId)
                 .then(function(response){
                         $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             },
