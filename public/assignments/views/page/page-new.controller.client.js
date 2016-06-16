@@ -9,12 +9,19 @@
         vm.websiteId = $routeParams.websiteId;
         vm.createPage = createPage;
 
-        function createPage(name, description) {
-            var newPage = PageService.createPage(vm.websiteId, name, description);
-            if(newPage) {
-                $location.url("/user/"+vm.websiteId+"/page/new");
-            } else {
-                vm.error = "Unable to create website";
+        function createPage(page) {
+            if(page && page.name) {
+                PageService
+                    .createPage(vm.websiteId, page)
+                    .then(function(response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        });
+            }
+            else {
+                vm.error = "New page must have name";
             }
         }
     }

@@ -1,19 +1,17 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-head">
             <p class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
-          <span class="glyphicon glyphicon-chevron-left">
-          </span>
+                <a ng-click="model.widgetHasRequiredFieldsSaved()" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">
-                New Image Widget
+                Edit Image Widget
             </a>
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
-          <span class="glyphicon glyphicon-ok">
-          </span>
+                <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
         </div>
@@ -21,43 +19,65 @@
 </nav>
 
 <div class="container">
+
     <form>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name">
+            <input type="text" class="form-control"
+                   id="name" placeholder="My Widget"
+                   ng-widget="model.widget.name"/>
         </div>
         <div class="form-group">
             <label for="text">Text</label>
-            <input type="text" class="form-control" id="text" placeholder="Text">
+            <input type="text" class="form-control"
+                   id="text" placeholder="My Heading Text"
+                   ng-model="model.widget.text"/>
         </div>
         <div class="form-group">
             <label for="url">URL</label>
-            <input type="url" class="form-control" id="url" placeholder="https://tmblr.com/...">
+            <input type="url"  class="form-control"
+                   id="url" placeholder="https://www.google.com"
+                   ng-model="model.widget.url"/>
         </div>
         <div class="form-group">
             <label for="width">Width</label>
-            <input type="text" class="form-control" id="width" placeholder="#">
+            <input type="text" class="form-control" id="width"
+                   placeholder="100%" ng-model="model.widget.width"/>
         </div>
-        <div class="form-group">
-            <label for="upload">Upload</label>
-            <input type="file" class="form-control" id="upload" placeholder="#">
-        </div>
-
     </form>
 
-    <a class="btn btn-primary  btn-block"
-       href="#">Upload Image</a>
-    <a class="btn btn-danger  btn-block"
-       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
+    <div class="input-group">
+        <input ng-model="searchText"
+               type="text"
+               class="form-control"
+               placeholder="Flickr Search">
+        <span class="input-group-btn">
+            <a ng-click="model.searchPhotos(searchText)"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+    </span>
+    </div>
+
+    <form action={{model.uploadUrl}} method="post" enctype="multipart/form-data">
+        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+    <a class="btn btn-danger btn-block"
+       ng-click="model.deleteWidget()">Delete</a>
 </div>
 
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text pull-right">
-            <a href="#/profile/{{model.userId}}">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
+    <div class="container-fluid">
+        <div class="navbar-head">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
         </div>
     </div>
 </nav>

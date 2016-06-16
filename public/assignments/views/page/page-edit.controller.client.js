@@ -9,13 +9,44 @@
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pageId;
         vm.deletePage = deletePage;
+        vm.updatePage = updatePage;
 
-        function deletePage(pageId) {
-            var result = PageService.deleteWebsite(pageId);
-            if(result) {
-                $location.url("/user/"+vm.websiteId+"/page/"+vm.pageId);
-            } else {
+        function init(){
+            PageService
+                .findPagebyId(vm.pageId)
+                .then(function (response) {
+                    vm.page = response.data;
+                },
+                function (error) {
+                   vm.error = error.data;
+                });
+        }
+        init();
+
+        function deletePage() {
+            PageService
+                .deleteWebsite(pageId)
+                .then(function(response){
+                        $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            },
+            function (error){
                 vm.error = "Unable to delete pagee";
+            });
+        }
+
+        function updatePage(page) {
+            if(page.name){
+                PageService
+                    .updatePage(vm.pageId, page)
+                    .then(function (response) {
+                            $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                        },
+                        function (error){
+                            vm.error = "Unable to delete pagee";
+                        });
+            }
+            else{
+                page.error="Name is required";
             }
         }
     }

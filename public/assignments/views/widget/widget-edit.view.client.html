@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADER">
+        <ng-include src="'/assignment/views/Widget/widget-heading.view.client.html'">
+    </ng-include></div>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'/assignment/views/Widget/widget-image.view.client.html'">
+    </ng-include></div>
+    <div ng-switch-when="YOUTUBE">
+        <ng-include src="'/assignment/views/Widget/widget-youtube.view.client.html'">
+    </ng-include></div>
+    <div ng-switch-when="HTML">
+        <ng-include src="'/assignment/views/Widget/widget-html.view.client.html'">
+    </ng-include></div>
+</div>

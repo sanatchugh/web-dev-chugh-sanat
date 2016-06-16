@@ -17,11 +17,9 @@
 
 <div class="container">
     <ul class="list-group">
-        <li ng-repeat="pages in model.pages" class="list-group-item">
-            <a href="#/user/{{pages.developerId}}/website/{{pages.websiteId}}/page/{{pages._id}}/widget">
-                {{pages.name}}
-            </a>
-            <a href="#/user/{{pages.developerId}}/website/{{pages.websiteId}}/page/{{pages._id}}" class="pull-right">
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
@@ -29,19 +27,13 @@
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#/profile/{{model.userId}}">
+    <div class="container-fluid">
+        <div class="navbar-head">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-            </div>
+            </p>
         </div>
     </div>
 </nav>

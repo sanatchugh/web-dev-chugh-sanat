@@ -8,13 +8,18 @@
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pageId;
-        var pageId = $routeParams.pageId;
-
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPageId(pageId);
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    });
         }
         init();
 
