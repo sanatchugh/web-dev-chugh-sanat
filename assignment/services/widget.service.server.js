@@ -1,58 +1,137 @@
 module.exports = function(app, models) {
-    var multer = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
-    app.post("/api/upload/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", upload.single('myFile'), uploadImage);
-    app.post("/api/page/:pageId/widget", createWidget);
-    app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-    app.get("/api/widget/:widgetId", findWidgetById);
-    app.put("/api/widget/:widgetId", updateWidget);
-    app.delete("/api/widget/:widgetId", deleteWidget);
-    app.put("/api/page/:pageId/widget", reorderWidget);
 
     var widgetModel = models.widgetModel;
 
-    function findAllWidgetsForPage(req,res) {
-        var id = req.params.pageId;
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
+    app.post ("/api/uploads", upload.single('myFile'), uploadImage);
+    app.post("/api/page/:pageId/widget", createWidget);
+    app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
+    app.get("/api/widget/:widgetId", findWidgetById);
+    app.put("/api/widget/:widgetId",  updateWidget);
+    app.delete("/api/widget/:widgetId", deleteWidget);
+    app.put("/api/page/:pageId/widget", reorderWidget);
+
+
+    function findWidgetById (req, res) {
+        var widgetId = req.params.widgetId;
         widgetModel
-            .findAllWidgetsForPage(id)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(widget) {
-            res.json(widget);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
+            .findWidgetById(widgetId)
+            .then(
+                function(widget){
+                    res.json(widget);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
     }
 
-    function updateWidget(req,res) {
+
+    function updateWidget(req, res) {
+
+        var widgetId = req.params.widgetId;
         var newWidget = req.body;
-        var id = req.params.widgetId;
+        widgetModel
+            .updateWidget(widgetId, newWidget)
+            .then(
+                function(stats){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
+
+    function findAllWidgetsForPage(req, res) {
+
+        var pageId = req.params.pageId;
+        widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(
+                function(widgets){
+                    res.json(widgets);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
+    
+    function createWidget(req, res){
+        var widget = req.body;
+        var pageId = req.params.pageId;
 
         widgetModel
-            .updateWidget(id, newWidget)
-            .then(updateSuccess, updateError);
+            .createWidget(pageId, widget)
+            .then(
+                function(widget) {
+                    res.json(widget);
+                },
+                function(err){
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
 
-        function updateSuccess(widget) {
-            res.json(widget);
-        }
+    function deleteWidget (req, res) {
+        var id = req.params.widgetId;
+        widgetModel
+            .findWidgetById(id)
+            .then(function(widget){
+                widgetModel
+                    .findAllWidgetsForPage(widget._page)
+                    .then(function(widgets){
+                            widgetModel
+                                .reorderWidget(widget._page, widget.order, widgets.length)
+                                .then(
+                                    function(stats) {
+                                        widgetModel
+                                            .deleteWidget(id)
+                                            .then(
+                                                function(stats){
+                                                    res.sendStatus(200);
+                                                },
+                                                function(err){
+                                                    res.statusCode(400).send(err);
+                                                });
+                                    },
+                                    function(err){
+                                        res.statusCode(400).send(err);
+                                    });
+                        },
+                        function(err){
+                            res.statusCode(400).send(err);
+                        });
+            },function(err){
+                res.statusCode(404).send(err);
+            });
+    }
 
-        function updateError(error) {
-            res.status(400).json(error);
-        }
+    function reorderWidget(req, res) {
+        var pageId = req.params.pageId;
+        var start = parseInt(req.query.start);
+        var end = parseInt(req.query.end);
+        widgetModel
+            .reorderWidget(pageId, start,end)
+            .then(
+                function(stats){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(400).send(err);
+                });
     }
 
     function uploadImage(req, res) {
-        var userId = req.params.userId;
-        var websiteId = req.params.websiteId;
-        var pageId = req.params.pageId;
-        var widgetId = req.params.widgetId;
 
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
+        var userId         = req.body.userId;
+        var websiteId      = req.body.websiteId;
+        var pageId         = req.body.pageId;
         var myFile        = req.file;
 
         var originalname  = myFile.originalname; // file name on user's computer
@@ -63,90 +142,16 @@ module.exports = function(app, models) {
         var mimetype      = myFile.mimetype;
 
         widgetModel
-            .findWidgetById(widgetId)
-            .then(foundSuccess, foundError);
+            .updateWidget(widgetId,{url : "/uploads/"+filename})
+            .then(
+                function(stats){
+                    res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
 
-        function foundSuccess(widget) {
-            widget.url = "/uploads/" + filename;
-            widgetModel
-                .updateWidget(widgetId, widget)
-                .then(redirect, redirect);
-        }
-
-        function foundError() {
-            redirect();
-        }
-
-        function redirect() {
-            res.redirect("/assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
-        }
     }
 
-
-    function findWidgetById(req,res) {
-        var id = req.params.widgetId;
-
-        widgetModel
-            .findWidgetById(id)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(widget) {
-            res.json(widget);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
-    }
-
-    function deleteWidget(req,res) {
-        var id = req.params.widgetId;
-
-        widgetModel
-            .deleteWidget(id)
-            .then(deleteSuccess, deleteError);
-
-        function deleteSuccess() {
-            res.send(true);
-        }
-
-        function deleteError(error) {
-            res.status(400).json(error);
-        }
-    }
-
-    function createWidget(req,res) {
-        var newWidget = req.body;
-        var pageId = req.params.pageId;
-
-        widgetModel
-            .createWidget(pageId, newWidget)
-            .then(createSuccess, createError);
-
-        function createSuccess(widget) {
-            res.json(widget);
-        }
-
-        function createError(error) {
-            res.status(400).json(error);
-        }
-    }
-
-    function reorderWidget(req, res) {
-        var pageId = req.params.pageId;
-        var start = req.query["start"];
-        var end = req.query["end"];
-
-        widgetModel
-            .reorderWidget(pageId, start, end)
-            .then(reorderSuccess, reorderError);
-
-        function reorderSuccess() {
-            res.json(true);
-        }
-
-        function reorderError(error) {
-            res.status(400).json(error);
-        }
-    }
 };

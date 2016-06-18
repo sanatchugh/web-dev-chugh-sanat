@@ -17,7 +17,7 @@
                     vm.website = response.data;
                 },
                 function (error) {
-                    vm.error = error.data;
+                    vm.error = "Unable to find website";
                 });
         }
 

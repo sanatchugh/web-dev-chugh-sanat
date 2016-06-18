@@ -1,92 +1,83 @@
 module.exports = function(app, models) {
 
+    var pageModel = models.pageModel;
+
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     app.get("/api/page/:pageId", findPageById);
     app.put("/api/page/:pageId", updatePage);
     app.delete("/api/page/:pageId", deletePage);
 
-    var pageModel = models.pageModel;
+    function updatePage(req, res) {
+        var pageId = req.params.pageId;
+        var newPage = req.body;
+        pageModel
+            .updatePage(pageId,newPage)
+            .then(
+                function(stats){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
+    
+    function findPageById (req, res) {
+        var pageId = req.params.pageId;
+        pageModel
+            .findPageById(pageId)
+            .then(
+                function(page){
+                    res.json(page);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
+
+    function createPage(req, res){
+        var websiteId = req.params.websiteId;
+        var page = req.body;
+        pageModel
+            .createPage(websiteId, page)
+            .then(
+                function(page){
+                    res.json(page);
+                },
+                function(err){
+                    res.statusCode(400).send(err);
+                }
+            );
+    }
+
+    function deletePage (req, res) {
+
+        var pageId = req.params.pageId;
+        pageModel
+            .deletePage(pageId)
+            .then(
+                function(stats){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
 
     function findAllPagesForWebsite(req, res) {
-        var id = req.params.websiteId;
-
+        var webId = req.params.websiteId;
         pageModel
-            .findAllPagesForWebsite(id)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(page) {
-            res.json(page);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
-    }
-
-    function updatePage(req, res) {
-        var id = req.params.pageId;
-        var newPage = req.body;
-
-        pageModel
-            .updatePage(id, newPage)
-            .then(updateSuccess, updateError);
-
-        function updateSuccess(page) {
-            res.json(page);
-        }
-
-        function updateError(error) {
-            res.status(400).json(error);
-        }
-    }
-    
-    function deletePage(req, res) {
-        var id = req.params.pageId;
-
-        pageModel
-            .deletePage(id)
-            .then(deleteSuccess, deleteError);
-
-        function deleteSuccess() {
-            res.send(true);
-        }
-
-        function deleteError(error) {
-            res.status(400).json(error);
-        }
-    }
-
-    function findPageById(req, res) {
-        var id = req.params.pageId;
-
-        pageModel
-            .findPageById(id)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(page) {
-            res.json(page);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
-    }
-    
-    function createPage(req, res) {
-        var newPage = req.body;
-        var websiteId = req.params.websiteId
-
-        pageModel
-            .createPage(websiteId, newPage)
-            .then(createSuccess, createError);
-
-        function createSuccess(page) {
-            res.json(page);
-        }
-
-        function createError(error) {
-            res.status(400).json(error);
-        }
+            .findAllPagesForWebsite(webId)
+            .then(
+                function(pages){
+                    res.json(pages);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
     }
 };

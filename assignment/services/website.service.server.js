@@ -1,93 +1,83 @@
 module.exports = function(app, models) {
 
+    var websiteModel = models.websiteModel;
+
     app.post("/api/user/:userId/website", createWebsite);
     app.get("/api/user/:userId/website", findAllWebsitesForUser);
     app.get("/api/website/:websiteId", findWebsiteById);
     app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/:websiteId", deleteWebsite);
 
-    var websiteModel = models.websiteModel;
-
-
-    function updateWebsite(req, res) {
-        var id = req.params.websiteId;
-        var newWebsite = req.body;
-
+    function createWebsite(req, res){
+        var website = req.body;
+        var userId = req.params.userId;
         websiteModel
-            .updateWebsite(id, newWebsite)
-            .then(updateSuccess, updateError);
-
-        function updateSuccess(websites) {
-            res.json(websites);
-        }
-
-        function updateError(error) {
-            res.status(400).json(error);
-        }
+            .createWebsite(userId, website)
+            .then(
+                function(website){
+                    res.json(website);
+                },
+                function (err) {
+                    res.statusCode(400).send(err);
+                }
+            );
     }
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
-
         websiteModel
             .findAllWebsitesForUser(userId)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(websites) {
-            res.json(websites);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
+            .then(
+                function(websites){
+                    res.json(websites);
+                },
+                function(err) {
+                    res.statusCode(404).send(err);
+                }
+            );
     }
 
-    function deleteWebsite(req, res) {
-        var id = req.params.websiteId;
-
+    function findWebsiteById (req, res) {
+        var websiteId = req.params.websiteId;
         websiteModel
-            .deleteWebsite(id)
-            .then(deleteSuccess, deleteError);
-
-        function deleteSuccess() {
-            res.send(true);
-        }
-
-        function deleteError(error) {
-            res.status(400).json(error);
-        }
+            .findWebsiteById(websiteId)
+            .then(
+                function(website) {
+                    res.json(website);
+                },
+                function(err) {
+                    res.statusCode(404).send(err);
+                }
+            );
     }
 
-    function createWebsite(req, res) {
-        var newWebsite = req.body;
-
+    function updateWebsite(req, res) {
+        var websiteId = req.params.websiteId;
+        var newSite = req.body;
         websiteModel
-            .createWebsite(newWebsite)
-            .then(createSuccess, createError);
-
-        function createSuccess(website) {
-            res.json(website);
-        }
-
-        function createError(error) {
-            res.status(400).json(error);
-        }
+            .updateWebsite(websiteId, newSite)
+            .then(
+                function(stats){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
     }
 
-    function findWebsiteById(req, res) {
-        var id = req.params.websiteId;
+    function deleteWebsite (req, res) {
 
+        var websiteId = req.params.websiteId;
         websiteModel
-            .findWebsiteById(id)
-            .then(foundSuccess, foundError);
-
-        function foundSuccess(websites) {
-            res.json(websites);
-        }
-
-        function foundError(error) {
-            res.status(400).json(error);
-        }
+            .deleteWebsite(websiteId)
+            .then(
+                function(stats) {
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
     }
-
 };
