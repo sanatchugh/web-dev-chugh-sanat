@@ -1,13 +1,4 @@
-module.exports = function(app) {
-
-    var websites = [
-        { "_id": "123", "name": "Facebook",    "developerId": "456" },
-        { "_id": "234", "name": "Tweeter",     "developerId": "456" },
-        { "_id": "456", "name": "Gizmodo",     "developerId": "234" },
-        { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
-        { "_id": "678", "name": "Checkers",    "developerId": "123" },
-        { "_id": "789", "name": "Chess",       "developerId": "234" }
-    ];
+module.exports = function(app, models) {
 
     app.post("/api/user/:userId/website", createWebsite);
     app.get("/api/user/:userId/website", findAllWebsitesForUser);
@@ -15,59 +6,88 @@ module.exports = function(app) {
     app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/:websiteId", deleteWebsite);
 
-    function createWebsite(req, res){
+    var websiteModel = models.websiteModel;
+
+
+    function updateWebsite(req, res) {
+        var id = req.params.websiteId;
         var newWebsite = req.body;
-        newWebsite._id = (new Date()).getTime()+"";
-        newWebsite.developerId = req.params.userId;
-        websites.push(newWebsite);
-        res.json(newWebsite);
+
+        websiteModel
+            .updateWebsite(id, newWebsite)
+            .then(updateSuccess, updateError);
+
+        function updateSuccess(websites) {
+            res.json(websites);
+        }
+
+        function updateError(error) {
+            res.status(400).json(error);
+        }
     }
 
-    function findAllWebsitesForUser(req, res){
+    function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
-        var result = [];
-        for(var w in websites) {
-            if(websites[w].developerId === userId) {
-                result.push(websites[w]);
-            }
+
+        websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(foundSuccess, foundError);
+
+        function foundSuccess(websites) {
+            res.json(websites);
         }
-        res.json(result);
+
+        function foundError(error) {
+            res.status(400).json(error);
+        }
     }
 
-    function findWebsiteById(req, res){
-        var websiteId = req.params.websiteId;
-        for(var i in websites){
-            if(websiteId == websites[i]._id){
-                res.send(websites[i]);
-                return;
-            }
+    function deleteWebsite(req, res) {
+        var id = req.params.websiteId;
+
+        websiteModel
+            .deleteWebsite(id)
+            .then(deleteSuccess, deleteError);
+
+        function deleteSuccess() {
+            res.send(true);
         }
-        res.send({});
+
+        function deleteError(error) {
+            res.status(400).json(error);
+        }
     }
 
-    function updateWebsite(req, res){
-        var websiteId=req.params.websiteId;
+    function createWebsite(req, res) {
         var newWebsite = req.body;
-        for(var i in websites){
-            if(websiteId == websites[i]._id){
-                websites[i].name = newWebsite.name;
-                res.sendStatus(200);
-                return
-            }
-        }
-        res.status(400);
 
+        websiteModel
+            .createWebsite(newWebsite)
+            .then(createSuccess, createError);
+
+        function createSuccess(website) {
+            res.json(website);
+        }
+
+        function createError(error) {
+            res.status(400).json(error);
+        }
     }
 
-    function deleteWebsite(req, res){
-        var websiteId = req.params.websiteId;
-        for(var i in websites){
-            if(websiteId == websites[i]._id){
-                websites.splice(i,1);
-                res.sendStatus(200);
-                return;
-            }
+    function findWebsiteById(req, res) {
+        var id = req.params.websiteId;
+
+        websiteModel
+            .findWebsiteById(id)
+            .then(foundSuccess, foundError);
+
+        function foundSuccess(websites) {
+            res.json(websites);
         }
-        res.status(400);
+
+        function foundError(error) {
+            res.status(400).json(error);
+        }
     }
+
 };
