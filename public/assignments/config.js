@@ -59,23 +59,8 @@
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
-                templateUrl: "views/widget/widget-chooser.view.client.html",
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/website/:websiteId/page/:pageId/widget/new/image", {
-                templateUrl: "views/widget/widget-image.view.client.html",
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/website/:websiteId/page/:pageId/widget/new/heading", {
-                templateUrl: "views/widget/widget-heading.view.client.html",
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
-            .when("/user/:userId/website/:websiteId/page/:pageId/widget/new/youtube", {
-                templateUrl: "views/widget/widget-youtube.view.client.html",
-                controller: "WidgetListController",
+                templateUrl: "views/widget/widget-new.view.client.html",
+                controller: "NewWidgetController",
                 controllerAs: "model"
             })
             .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", {

@@ -17,34 +17,34 @@
 <div class="container" >
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/heading">Header</a>
+            <a ng-click="model.createWidget('HEADER')">Header</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Label</a>
+            <a href="">Label</a>
         </li>
         <li class="list-group-item">
-            <a href="#">HTML</a>
+            <a ng-click="model.createWidget('HTML')">HTML</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Text Input</a>
+            <a ng-click="model.createWidget('TEXT')">Text Input</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Link</a>
+            <a href="">Link</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Button</a>
+            <a href="">Button</a>
         </li>
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/image">Image</a>
+            <a ng-click="model.createWidget('IMAGE')">Image</a>
         </li>
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/youtube">Youtube</a>
+            <a ng-click="model.createWidget('YOUTUBE')">YouTube</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Data Table</a>
+            <a href="">Data Table</a>
         </li>
         <li class="list-group-item">
-            <a href="#">Repeater</a>
+            <a href="">Repeater</a>
         </li>
     </ul>
 </div>

@@ -1,13 +1,13 @@
 module.exports = function(app) {
 
     var widgets = [
-        { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "LAMBORGHINI", "websiteId": "789", "developerId": "234"},
-        { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "The BEAST Lies Within", "websiteId": "789", "developerId": "234"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "http://cdn.lamborghini.com/content/homepage/Lamborghini-Centenario-3-4-Front-HP-models_1920x1080.jpg", "websiteId": "789", "developerId": "234"},
-        { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Sesto Elemento", "websiteId": "789", "developerId": "234"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://www.youtube.com/embed/zRT1hw_-0a8", "websiteId": "789", "developerId": "234" },
+        { "_id": "123", "widgetType": "HEADER", "pageId": "666", "size": 2, "text": "LAMBORGHINI"},
+        { "_id": "234", "widgetType": "HEADER", "pageId": "666", "size": 4, "text": "The BEAST Lies Within"},
+        { "_id": "345", "widgetType": "IMAGE", "pageId": "666", "width": "100%",
+            "url": "http://cdn.lamborghini.com/content/homepage/Lamborghini-Centenario-3-4-Front-HP-models_1920x1080.jpg"},
+        { "_id": "567", "widgetType": "HEADER", "pageId": "666", "size": 4, "text": "Sesto Elemento"},
+        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "666", "width": "100%",
+            "url": "https://www.youtube.com/embed/zRT1hw_-0a8"},
     ];
 
     app.post("/api/page/:pageId/widget", createWidget);
@@ -29,9 +29,9 @@ module.exports = function(app) {
         var id = req.params.pageId;
         var result = [];
 
-        for(var i in pages) {
-            if(pages[i].pageId = id) {
-                result.push(pages[i]);
+        for(var i in widgets) {
+            if(widgets[i].pageId = id) {
+                result.push(widgets[i]);
             }
         }
         res.json(result);

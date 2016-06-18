@@ -28,7 +28,7 @@
         init();
 
 
-        function widgetIsMissingNecessaryFields(widget) {
+        function widgetMissingFields(widget) {
             switch(widget.widgetType) {
                 case "HEADER":
                     if(!widget.text || !widget.size) {
@@ -58,7 +58,7 @@
                 .findWidgetsById(vm.widgetId)
                 .then(function(response) {
                         var widget = response.data;
-                        var result = widgetIsMissingNecessaryFields(widget);
+                        var result = widgetMissingFields(widget);
                         if(result) {
                             vm.error = result + ". Save or empty fields before leaving page";
                         }
@@ -84,7 +84,7 @@
         }
 
         function updateWidget(widget) {
-            var missingFields =  widgetIsMissingNecessaryFields(widget);
+            var missingFields =  widgetMissingFields(widget);
             if(missingFields) {
                 vm.error = missingFields;
             }
