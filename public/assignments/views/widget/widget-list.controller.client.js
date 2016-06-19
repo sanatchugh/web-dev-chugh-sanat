@@ -3,25 +3,39 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController($sce, $routeParams, WidgetService) {
+    function WidgetListController($sce, $location, $routeParams, WidgetService) {
         var vm = this;
+        vm.getSafeHtml = getSafeHtml;
+        vm.getSafeUrl = getSafeUrl;
+        vm.reorder = reorder;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pageId;
-        vm.getSafeHtml = getSafeHtml;
-        vm.getSafeUrl = getSafeUrl;
-
+        
         function init() {
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
-                .then(function(response) {
-                        vm.widgets = response.data;
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    });
+                .then(function(response){
+                    vm.widgets = response.data;
+                });
+
         }
         init();
+
+        function reorder(start, end) {
+            console.log("Widget List Controller");
+            console.log(start);
+            console.log(end);
+            WidgetService
+                .reorderWidget(vm.pageId, start, end)
+                .then(
+                    function(response){
+                        init();//$location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                    },
+                    function(err){
+                        vm.error = "Unable to update widget order"
+                    });
+        }
 
         function getSafeHtml(widget) {
             return $sce.trustAsHtml(widget.text);

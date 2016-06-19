@@ -18,29 +18,18 @@
     </div>
 </nav>
 
-<div class="container">
-
-    <form>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text"
-                   class="form-control"
-                   id="name"
-                   placeholder="My Widget"
-                   ng-model="model.widget.name"/>
-        </div>
-        <div class="form-group">
-            <label for="text">Text</label>
-            <input type="text"
-                   class="form-control"
-                   id="text"
-                   placeholder="My Heading Text"
-                   ng-model="model.widget.text"/>
-        </div>
-    </form>
-    <a class="btn btn-danger btn-block"
-       ng-click="model.deleteWidget()">Delete</a>
+Name
+<input ng-model="model.widget.name" class="form-control"/>
+HTML
+<div class="form-group" ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
 </div>
+
+<a class="btn btn-danger  btn-block"
+   ng-click="model.deleteWidget(model.widget._id)">Delete</a>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

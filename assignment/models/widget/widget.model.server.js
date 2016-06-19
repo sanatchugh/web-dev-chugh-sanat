@@ -20,7 +20,6 @@ module.exports = function() {
     function reorderWidget(pageId, start, end) {
         return Widget
             .find({"_page" : pageId},function(err, widgets){
-
                 widgets.forEach(function(widget){
 
                     if(start < end) {
@@ -47,7 +46,7 @@ module.exports = function() {
     function updateWidget(widgetId, widget) {
         delete widget._id;
         return Widget
-            .update({_id: widgetId}, {
+            .update({"_id": widgetId}, {
                 $set: widget
             });
     }

@@ -1,107 +1,55 @@
-(function() {
+(function(){
     angular
         .module("WebAppMaker")
-        .controller("EditWidgetController", EditWidgetController);
+        .controller("WidgetEditController", WidgetEditController);
 
-    function EditWidgetController($location, $routeParams, WidgetService) {
+    function WidgetEditController($sce, $routeParams, $location, WidgetService) {
         var vm = this;
+        vm.widgetId = $routeParams.widgetId;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
-        vm.pageId = $routeParams.pid;
-        vm.widgetId = $routeParams.wgid;
-        vm.updateWidget = updateWidget;
-        vm.deleteWidget = deleteWidget;
-        vm.widgetHasRequiredFieldsSaved = widgetHasRequiredFieldsSaved;
-        vm.searchPhotos = searchPhotos;
+        vm.pageId = $routeParams.pageId;
 
         function init() {
-            vm.uploadUrl = "/api/upload/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + vm.widgetId;
             WidgetService
                 .findWidgetsById(vm.widgetId)
-                .then(function(response) {
-                        vm.widget = response.data;
-                    },
-                    function(error){
-                        vm.error = error.data;
-                    });
+                .then(function(response){
+                    vm.widget = response.data;
+                    if(vm.widget.type === "HEADING"){
+                        vm.widget.size = vm.widget.size+"";
+                    }
+                });
         }
         init();
+        vm.deleteWidget = deleteWidget;
+        vm.updateWidget = updateWidget;
 
+        function updateWidget(widgetId, widget) {
 
-        function widgetMissingFields(widget) {
-            switch(widget.widgetType) {
-                case "HEADER":
-                    if(!widget.text || !widget.size) {
-                        return "Widget Text and Size are required";
-                    }
-                    return null;
-                case "HTML":
-                    if(!widget.text) {
-                        return "Text is a required";
-                    }
-                    return null;
-                case "IMAGE":
-                    if(!widget.url) {
-                        return "Image URL is a required";
-                    }
-                    return null;
-                case "YOUTUBE":
-                    if(!widget.url) {
-                        return "A Youtube URL is required";
-                    }
-                    return null;
-            }
-        }
-
-        function widgetHasRequiredFieldsSaved() {
             WidgetService
-                .findWidgetsById(vm.widgetId)
-                .then(function(response) {
-                        var widget = response.data;
-                        var result = widgetMissingFields(widget);
-                        if(result) {
-                            vm.error = result + ". Save or empty fields before leaving page";
-                        }
-                        else {
-                            $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-                        }
+                .updateWidget(widgetId, widget)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
-                        vm.error = error.data;
-                    });
+                        vm.error = "Unable to update widget";
+                    }
+                );
 
         }
 
-        function deleteWidget() {
+        function deleteWidget(widgetId) {
             WidgetService
-                .deleteWidget(vm.widgetId)
-                .then(function(response) {
-                        $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                .deleteWidget(widgetId)
+                .then(
+                    function(response){
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/"+vm.pageId+"/widget");
                     },
                     function(error) {
-                        vm.error = error.data;
-                    });
-        }
-
-        function updateWidget(widget) {
-            var missingFields =  widgetMissingFields(widget);
-            if(missingFields) {
-                vm.error = missingFields;
-            }
-            else {
-                WidgetService
-                    .updateWidget(vm.widgetId, widget)
-                    .then(function(response) {
-                            $location.url("user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-                        },
-                        function(error) {
-                            vm.error = error.data;
-                        });
-            }
-        }
-
-        function searchPhotos(searchText) {
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + vm.widgetId + "/flickr/" + searchText);
+                        vm.error = "Unable to delete widget";
+                    }
+                );
         }
     }
 })();
