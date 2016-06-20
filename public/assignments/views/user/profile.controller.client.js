@@ -3,12 +3,12 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, $routeParams, UserService) {
+    function ProfileController($location, $rootScope, $routeParams, UserService) {
         var vm = this;
+        var id = $rootScope.currentUser._id;
+        vm.logout = logout;
         vm.updateUser = updateUser;
         vm.unregister = unregister;
-
-        var id = $routeParams.id;
 
         function init() {
             UserService
@@ -32,6 +32,7 @@
                 );
         }
 
+
         function updateUser(newUser) {
             UserService
                 .updateUser(id, newUser)
@@ -43,6 +44,21 @@
                         vm.error = "Unable to update user"
                     }
                 );
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                )
         }
     }
 

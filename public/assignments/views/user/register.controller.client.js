@@ -1,22 +1,36 @@
-(function () {
+(function(){
     angular
         .module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
         var vm = this;
-
-        vm.register = register;
-
-        function register(username, password, password2) {
-            UserService
-                .createUser(username, password)
-                .then(function(response){
-                    var user = response.data;
-                    if(user) {
-                        $location.url("/profile/"+user._id);
-                    }
-                });
+        vm.createUser = createUser;
+        function createUser(newUser) {
+            if (newUser.password === newUser.verifypass) {
+                UserService
+                    .register(newUser)
+                    .then(
+                        function (response) {
+                            var user = response.data;
+                            if (user) {
+                                $rootScope.currentUser = user;
+                                $location.url("/user/");
+                            }
+                            else {
+                                $rootScope.currentUser = null;
+                                vm.error = "unable to create user.";
+                            }
+                        },
+                        function(err){
+                            $rootScope.currentUser = null;
+                            vm.error = err;
+                        }
+                    );
+            }
+            else {
+                vm.error = "passwords do not match.";
+            }
         }
     }
 })();
