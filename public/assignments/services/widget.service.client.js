@@ -34,6 +34,9 @@
             var newWidget = {
                 type: widget.type
             };
+            if(widget.type === "HEADING"){
+                newWidget.size = widget.size;
+            }
             var url = "/api/page/" + pageId + "/widget";
             return $http.post(url, newWidget);
         }

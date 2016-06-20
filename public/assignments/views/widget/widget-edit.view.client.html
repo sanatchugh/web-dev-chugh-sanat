@@ -1,57 +1,50 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
-                   class="navbar-link">
+<form novalidate name="editWidgetForm">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
+                    </a>
+                </p>
+                <a class="navbar-brand">
+                    Widget Edit
                 </a>
-            </p>
-            <a class="navbar-brand">
-                Widget Edit
-            </a>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.updateWidget(model.widget._id, model.widget)" class="navbar-link">
+                <p class="navbar-text pull-right">
+                    <button type="submit" ng-click="editWidgetForm.$valid && model.updateWidget(model.widget._id, model.widget)" class="navbar-link okButton">
                   <span class="glyphicon glyphicon-ok">
                   </span>
-                </a>
-            </p>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div ng-switch="model.widget.type" >
+            <div ng-switch-when="HEADING" >
+                <ng-include src="'views/widget/widget-heading.view.client.html'"/>
+            </div>
+            <div ng-switch-when="IMAGE" >
+                <ng-include src="'views/widget/widget-image.view.client.html'"/>
+            </div>
+            <div ng-switch-when="YOUTUBE" >
+                <ng-include src="'views/widget/widget-youtube.view.client.html'"/>
+            </div>
+            <div ng-switch-when="HTML" >
+                <ng-include src="'views/widget/widget-html-edit.view.client.html'"/>
+            </div>
+            <div ng-switch-when="INPUT" >
+                <ng-include src="'views/widget/widget-text-input.view.client.html'"/>
+            </div>
         </div>
     </div>
-</nav>
-
-
-<div class="container">
-
-    <div ng-switch="model.widget.type">
-        <div ng-switch-when="HEADING">
-            <ng-include src="'views/widget/widget-heading.view.client.html'"/>
-        </div>
-        <div ng-switch-when="IMAGE">
-            <ng-include src="'views/widget/widget-image.view.client.html'"/>
-        </div>
-        <div ng-switch-when="YOUTUBE">
-            <ng-include src="'views/widget/widget-youtube.view.client.html'"/>
-        </div>
-        <div ng-switch-when="HTML">
-            <ng-include src="'views/widget/widget-html-edit.view.client.html'"/>
-        </div>
-        <div ng-switch-when="INPUT">
-            <ng-include src="'views/widget/widget-text-input.view.client.html'"/>
-        </div>
-    </div>
-</div>
+</form>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
-            <div class="col-xs-3 text-center">
-            </div>
             <div class="col-xs-3 text-center">
                 <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>

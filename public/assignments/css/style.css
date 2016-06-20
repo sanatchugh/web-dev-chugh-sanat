@@ -1,7 +1,6 @@
 input.form-control {
     margin-bottom: 5px;
 }
-
 body {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -10,11 +9,21 @@ body {
 p.navbar-text.pull-right {
     margin-right: 15px;
 }
-
 p.navbar-text.pull-left {
     margin-left: 15px;
 }
-
+.message {
+    font-size : 13px ;
+    color : red;
+}
+.okButton {
+    border:none;
+    background-color: transparent;
+    outline:none;
+}
+form.ng-submitted .ng-invalid {
+    border: 1px solid red;
+}
 .jga-widget-tool {
     position: absolute;
     right: 15px;
@@ -25,13 +34,11 @@ p.navbar-text.pull-left {
     opacity: 0.7;
     z-index : 2;
 }
-
 .youtube-widget {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
 }
-
 .youtube-widget iframe {
     position: absolute;
     top: 0;
