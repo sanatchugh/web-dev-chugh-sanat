@@ -22,7 +22,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({secret: process.env.SESSION_SECRET }));
+app.use(session({secret: "cebb0f6b6abae78fc19f3c38b20a7808" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
