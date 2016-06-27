@@ -43,9 +43,8 @@
                     {{teamname.name}}
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <a href="#/teamplayers/{{teamname.code}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        {{teamname.squadMarketValue}} | (aka) - {{teamname.shortName}} |
-                    </a>
+                    <a href="#/teamplayers/{{teamname.code}}/{{model.league}}/{{model.userId}}/" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Value: {{teamname.squadMarketValue}} | (aka) - {{teamname.shortName}} | Players ->                    </a>
                 </div>
             </div>
         </div>

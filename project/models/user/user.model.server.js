@@ -12,7 +12,8 @@ module.exports = function(){
         findUserByUsername      : findUserByUsername,
         updateUser              : updateUser,
         deleteUser              : deleteUser,
-        getUsers                : getUsers
+        getUsers                : getUsers,
+        findPlayersForUserId    : findPlayersForUserId
     };
 
     return api;
@@ -50,6 +51,10 @@ module.exports = function(){
 
     function createUser(user){
         return User.create(user);
+    }
+
+    function findPlayersForUserId(userId) {
+        return User.find({"_user" : userId});
     }
 
 

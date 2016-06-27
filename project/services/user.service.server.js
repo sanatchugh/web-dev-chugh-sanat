@@ -7,6 +7,7 @@ module.exports = function(app, models) {
     app.get("/api/user?username=username", findUserByUsername);
     app.get("/api/user?username=username&password=password", findUserByCredentials);
     app.get("/api/user/:userId", findUserById);
+    app.get("/api/user/:userId/players", findPlayersForUserId);
     app.put("/api/user/:userId",  updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
@@ -118,6 +119,20 @@ module.exports = function(app, models) {
                     res.sendStatus(200);
                 },
                 function(err){
+                    res.statusCode(404).send(err);
+                }
+            );
+    }
+
+    function findPlayersForUserId(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findAllWebsitesForUser(userId)
+            .then(
+                function(players){
+                    res.json(players);
+                },
+                function(err) {
                     res.statusCode(404).send(err);
                 }
             );

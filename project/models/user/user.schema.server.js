@@ -11,7 +11,7 @@ module.exports = function() {
         dob         : Date,
         email       : String,
         phone       : String,
-        websites    : [{type: mongoose.Schema.Types.ObjectId, ref: "Website"}],
+        players    : [{type: mongoose.Schema.Types.ObjectId, ref: "Player"}],
         dateCreated : {type: Date, default : Date.now}
     }, {collection : "assignment.user"});
 

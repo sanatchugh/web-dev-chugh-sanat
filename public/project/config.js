@@ -38,7 +38,7 @@
                 controller: "LeagueController",
                 controllerAs: "model"
             })
-            .when("/teamlist/:league", {
+            .when("/teamlist/:league/:id", {
                 templateUrl: "views/team/team_list.view.client.html",
                 controller: "TeamListController",
                 controllerAs: "model"
@@ -48,7 +48,7 @@
                 controller: "PlayerController",
                 controllerAs: "model"
             })
-            .when("/teamplayers/:code", {
+            .when("/teamplayers/:code/:league/:id", {
                 templateUrl: "views/team/team_players.view.client.html",
                 controller: "TeamPlayersController",
                 controllerAs: "model"

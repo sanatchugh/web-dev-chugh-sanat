@@ -8,7 +8,7 @@
         vm.userId = $routeParams.id;
 
         function init() {
-            USerService
+            UserService
                 .findPlayersForUserId(vm.userId)
                 .then(function (response) {
                         vm.playernames=response.data;

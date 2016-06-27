@@ -33,6 +33,22 @@
         <!-- /.container -->
     </nav>
 
+    <div class="container">
+        <div class="container player_card">
+            <div class="left_player_card">
+                <ul class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content player_name">
+      Player Name
+    </span>
+                    </li></ul>
+            </div>
+            <div class="right_player_card_header">
+                Jersey Number
+            </div>
+        </div>
+    </div>
+
     <div ng-repeat="playername in model.playernames" class="container player_card_body">
         <div class="container player_card">
             <div class="left_player_card">
@@ -49,12 +65,19 @@
         </div>
         <div class="container player_card_details">
             <div class="row_details">
-                <div class="col">
-                    {{playername.jerseyNumber}}</div>
-                <div class="col">
+                <div class="col">DoB:
                     {{playername.dateOfBirth}}</div>
-                <div class="last">
+                <div class="col">Contract Until:
+                    {{playername.contractUntil}}</div>
+                <div class="col">Nationality:
                     {{playername.nationality}}</div>
+                <div class="last">
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-">
+                        <input type="checkbox" id="switch-1" class="mdl-switch__input">
+                        <span class="mdl-switch__label"></span>
+                    </label>
+                </div>
+
             </div>
         </div>
     </div>

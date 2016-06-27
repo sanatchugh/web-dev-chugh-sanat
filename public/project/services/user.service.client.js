@@ -9,7 +9,8 @@
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserById: findUserById,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            findPlayersForUserId: findPlayersForUserId
         };
         return api;
 
@@ -40,5 +41,10 @@
             var url = "/api/user?username="+username+"&password="+password;
             return $http.get(url);
         }
+        function findPlayersForUserId(developerId) {
+            var url = "/api/user/" + developerId + "/players";
+            return $http.get(url);
+        }
+
     }
 })();
