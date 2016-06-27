@@ -1,0 +1,68 @@
+<div class="home_body">
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-color" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle navbar-toggle-color" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/profile/{{model.userId}}"><span class="glyphicon glyphicon-user"></span></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/UEFA_Euro_2016">About</a>
+                </li>
+                <li>
+                    <a href="http://www.uefa.com/uefaeuro/season=2016/matches/index.html">Schedule</a>
+                </li>
+                <li>
+                    <a href="http://www.uefa.com/uefaeuro/season=2016/standings/index.html">Standings</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="container home_body">
+
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-12 portfolio-item">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand stylemyList">
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="#/mylist/{{model.userId}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        My Lists
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Projects Row -->
+    <div class="row team_player">
+        <div class="col-md-12 portfolio-item">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand styleCardLeague">
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="#/team/league_chooser/{{model.userId}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Search for a Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

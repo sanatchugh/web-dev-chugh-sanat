@@ -1,20 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ProjectApp">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Project Home Page</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <title>Football DB</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <!--MDL-->
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-red.min.css" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-amber.min.css">
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/user/login.controller.client.js"></script>
+    <script src="views/user/register.controller.client.js"></script>
+    <script src="views/user/profile.controller.client.js"></script>
+    <script src="views/user/home.controller.client.js"></script>
+    <script src="views/user/mylist.controller.client.js"></script>
+    <script src="views/team/team_list.controller.client.js"></script>
+    <script src="views/team/league_chooser.controller.client.js"></script>
+    <script src="views/player/player_list.controller.client.js"></script>
+    <script src="views/team/team_players.controller.client.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="services/teams.service.client.js"></script
+    <script src="services/players.service.client.js"></script>
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!--Views-->
+
 </head>
+
 <body>
-    <h1>Project Home Page</h1>
-    <h2>Coming Soon..</h2>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Button
-    </button>
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-        <i class="material-icons">add</i>
-    </button>
+<div ng-view></div>
+<!--&lt;!&ndash; Full Page Image Background Carousel Header &ndash;&gt;-->
+<!--<header id="myCarousel" class="carousel slide">-->
+
+    <!--&lt;!&ndash; Indicators &ndash;&gt;-->
+    <!--<ol class="carousel-indicators carousel-height">-->
+        <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+        <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
+        <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
+    <!--</ol>-->
+
+    <!--&lt;!&ndash; Wrapper for Slides &ndash;&gt;-->
+    <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+            <!--<a class="btn btn-success btn-block btn-font" href="views/user/login.view.client.html">Get In There!   <i class="glyphicon glyphicon-play"></i></a>-->
+            <!--&lt;!&ndash; Set the first background image using inline CSS below. &ndash;&gt;-->
+            <!--<div class="fill" style="background-image:url('images/euro_2016_football_cup_france-1920x1080.jpg');"></div>-->
+            <!--<div class="carousel-caption">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<a class="btn btn-success btn-block btn-font" href="views/user/login.view.client.html">Get In There!   <i class="glyphicon glyphicon-play"></i></a>-->
+            <!--&lt;!&ndash; Set the second background image using inline CSS below. &ndash;&gt;-->
+            <!--<div class="fill" style="background-image:url('images/euro_2016_players-wallpaper-1920x1080.jpg');"></div>-->
+            <!--<div class="carousel-caption">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<a class="btn btn-success btn-block btn-font" href="views/user/login.view.client.html">Get In There!   <i class="glyphicon glyphicon-play"></i></a>-->
+            <!--&lt;!&ndash; Set the third background image using inline CSS below. &ndash;&gt;-->
+            <!--<div class="fill" style="background-image:url('images/c904a06515278096s.jpg');"></div>-->
+            <!--<div class="carousel-caption">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash; Controls &ndash;&gt;-->
+    <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">-->
+        <!--<span class="icon-prev"></span>-->
+    <!--</a>-->
+    <!--<a class="right carousel-control" href="#myCarousel" data-slide="next">-->
+        <!--<span class="icon-next"></span>-->
+    <!--</a>-->
+
+<!--</header>-->
+<!--&lt;!&ndash; Script to Activate the Carousel &ndash;&gt;-->
+<!--<script>-->
+    <!--$('.carousel').carousel({-->
+        <!--interval: 5000 //changes the speed-->
+    <!--})-->
+<!--</script>-->
+
 </body>
+
 </html>

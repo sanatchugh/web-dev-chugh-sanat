@@ -1,0 +1,74 @@
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top navbar-color profile_body" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle navbar-toggle-color" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">My Profile</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/UEFA_Euro_2016">About</a>
+                </li>
+                <li>
+                    <a href="http://www.uefa.com/uefaeuro/season=2016/matches/index.html">Schedule</a>
+                </li>
+                <li>
+                    <a href="http://www.uefa.com/uefaeuro/season=2016/standings/index.html">Standings</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="container">
+    <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success!</strong> {{model.success}}
+    </div>
+
+    <div ng-if="model.error" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> {{model.error}}
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.user.firstname" type="text" class="form-control" id="first-name" placeholder="Alice">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.user.lastname" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+        </div>
+    </form>
+
+    <a class="btn btn-success btn-block"
+       ng-click="model.updateUser(model.user)">Update</a>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.unregister()">Delete</a>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Logout</a>
+</div>
+
+</body>

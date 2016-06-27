@@ -1,0 +1,233 @@
+html,
+body {
+    height: 100%;
+    background-color: gold;
+    padding-top: 50px;
+}
+
+.navbar-toggle.navbar-toggle-color{
+    border-color: white;
+}
+
+.carousel,
+.item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+.carousel-height{
+    bottom: 20px;
+}
+
+.mdl-card__title.mdl-card--expand.cup_card{
+    height: 200px;
+}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.btn-font{
+    font-size: 18px;
+    font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+    font-weight: bolder;
+}
+
+.demo-card-square.mdl-card {
+    width: 100%;
+    height: 50%;
+}
+.demo-card-square > .mdl-card__title {
+    color: white;
+    background:
+            url('../images/RTX19CW4-1170x658.jpg') bottom right 15% no-repeat black;
+}
+
+.mdl-card__title.mdl-card--expand.stylemyList {
+    color: white;
+    background:
+            url('http://si-www-footballmanager-com-shared.s3.amazonaws.com/footballmanager/features/FM16%20-%20Fantasy%20Draft%20-%20Draft%20Stage_1.png') center left no-repeat black;
+}
+.mdl-card__title.mdl-card--expand.styleLeague {
+    min-height: 380px;
+    overflow: hidden;
+    color: white;
+    background-size: 100% auto;
+    background:
+            url('http://fullhdpictures.com/wp-content/uploads/2015/10/Mobile-Chelsea-Wallpaper.jpg') center top 40% no-repeat black;
+}
+.mdl-card__title.mdl-card--expand.styleCardLeague {
+    color: white;
+    background-size: 100% auto;
+    background:
+            url('http://fullhdpictures.com/wp-content/uploads/2015/10/Mobile-Chelsea-Wallpaper.jpg') center top 40% no-repeat black;
+}
+
+.mdl-card__title.mdl-card--expand.stylePlayer {
+    color: white;
+    background:
+            url('https://s-media-cache-ak0.pinimg.com/736x/26/53/dd/2653dd002fd253b787c4727d9bb244f2.jpg') center right 65% no-repeat black;
+}
+
+.demo-list-action {
+    width: 300px;
+}
+
+.mdl-button.mdl-js-button.mdl-js-ripple-effect.league_button{
+    padding-bottom: 10px;
+    width: 100%;
+    color: black;
+    background-color: gold;
+    border: 2px solid #555555;
+}
+
+.portfolio-item{
+    padding-top: 15px;
+}
+
+.login_element{
+    padding-top: 30px;
+    width: 100%;
+}
+
+.register_element{
+    margin-top: -40px;
+    width: 100%;
+}
+
+.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect{
+    width: 100%;
+}
+.index_body{
+    padding-top: 50px;
+}
+
+.home_body{
+    background-color: gold;
+}
+
+.row.team_player{
+    margin-bottom: 20px;
+}
+
+.navbar.navbar-inverse.navbar-static-top.navbar-color.profile_body{
+    margin-top: -100px;
+}
+
+.league_body{
+    padding-top: 50px;
+    background: url('http://worldsoccertalk.com/wp-content/uploads/2013/09/european-leagues.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.team_list_body{
+    padding-top: 50px;
+    background: url('http://www.wpaperhd.com/uploads/originals/2016/02/23/champions-league-uefa-2015-2016-ypgn.jpg') no-repeat 5% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.player_list_body{
+    padding-top: 50px;
+    background: url('http://www.wpaperhd.com/uploads/originals/2016/02/23/champions-league-uefa-2015-2016-ypgn.jpg') no-repeat 5% fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 20px;
+
+}
+
+.testsearch {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('http://findicons.com/files/icons/1389/g5_system/32/toolbar_find.png');
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+}
+
+.testsearch:focus {
+    border-bottom: solid gold;
+}
+
+.left_player_card{
+    border-right: solid gold;
+    width: 50%;
+    float: left;
+}
+
+.right_player_card {
+    font-size: 60px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-left: 10px;
+    margin-left: 50%; /* Change this to whatever the width of your left column is*/
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.container.player_card{
+    border: solid gold;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.player_card_details{
+    border-bottom: thick solid gold;
+    border-right: solid gold;
+    border-left: solid gold;
+    background-color: white;
+}
+
+.add_button {
+    display: flex;
+    align-content: center;
+}
+
+.col
+{
+    float: left;
+    width: 25%;
+}
+
+.last{
+    float: right;
+    width: 25%;
+}
+.row_details{
+    text-align: center;
+    height: auto;
+    overflow: auto;
+}
+.test_background{
+    margin-top: -100px;
+}
+
+
+

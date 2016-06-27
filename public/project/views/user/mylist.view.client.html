@@ -1,0 +1,88 @@
+<div class="player_list_body">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-color" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button " class="navbar-toggle navbar-toggle-color" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">My List</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="https://en.wikipedia.org/wiki/UEFA_Euro_2016">About</a>
+                    </li>
+                    <li>
+                        <a href="http://www.uefa.com/uefaeuro/season=2016/matches/index.html">Schedule</a>
+                    </li>
+                    <li>
+                        <a href="http://www.uefa.com/uefaeuro/season=2016/standings/index.html">Standings</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Colored mini FAB button -->
+    <div class="container">
+        <a class="add_button" href="../player/player_list.view.client.html">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                <i class="material-icons">add</i>
+            </button>
+        </a>
+    </div>
+
+    <div ng-repeat="playername in model.playernames" class="container player_card_body">
+        <div class="container player_card">
+            <div class="left_player_card">
+                <ul class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content player_name">
+      {{playername.name}}
+    </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_player_card">
+                {{playername.jerseyNumber}}
+            </div>
+        </div>
+        <div class="container player_card_details">
+            <div class="row_details">
+                <div class="col">
+                    {{playername.jerseyNumber}}
+                </div>
+                <div class="col">
+                    {{playername.dateOfBirth}}
+                </div>
+                <div class="last">
+                    {{playername.nationality}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row navbar-text">
+                <div class="col-xs-3 text-center">
+                    <a href="#/profile/userId">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>

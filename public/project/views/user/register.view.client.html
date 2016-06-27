@@ -1,0 +1,26 @@
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-color" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Registration</a>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<!-- /.container -->
+<div class="container register_element">
+    <input ng-model="username" type="text" class="form-control" placeholder="username"/>
+    <input ng-model="password" type="password" class="form-control" placeholder="password"/>
+    <input ng-model="password2" type="password" class="form-control" placeholder="very password"/>
+    <br>
+    <a ng-click="model.register(username, password, password2)" class="btn btn-primary btn-block">Register</a>
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel</a>
+</div>
+
+</body>
