@@ -127,7 +127,7 @@ module.exports = function(app, models) {
     function findPlayersForUserId(req, res) {
         var userId = req.params.userId;
         userModel
-            .findAllWebsitesForUser(userId)
+            .findPlayersForUserId(userId)
             .then(
                 function(players){
                     res.json(players);

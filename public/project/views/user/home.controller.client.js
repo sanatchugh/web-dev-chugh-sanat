@@ -7,7 +7,6 @@
         var vm = this;
         vm.userId = $routeParams.id;
         vm.register = register;
-        var js;
         function register() {
             $.ajax({
                 headers: { 'X-Auth-Token': 'e9b294b714ba489e913c0948ae0f084e' },
