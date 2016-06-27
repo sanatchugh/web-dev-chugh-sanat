@@ -7,6 +7,7 @@
         var vm = this;
         vm.code=$routeParams.code;
         vm.userId=$routeParams.id;
+        vm.league=$routeParams.league;
         vm.liked=liked;
 
         function init() {
@@ -14,8 +15,8 @@
         }
         init();
         
-        function liked() {
-                
+        function liked(name, num, nationality, dob, contractuntil) {
+                TeamService.storeUserPlayerList(vm.userId, vm.code, vm.league, name, num, nationality, dob, contractuntil);
                 $location.url("/mylist/" + vm.userId);
         }
     }

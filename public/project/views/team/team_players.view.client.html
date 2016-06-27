@@ -49,52 +49,18 @@
                         Contract Until - <span class="contractuntil">{{playername.contractUntil}}</span>
                     </h6>
                     <div class="mdl-layout-spacer"></div>
-                    <a> <i  id="{{playername.jerseyNumber}}" ng-click="model.liked()" class="material-icons like">grade</i></a>
+                    <a> <i  id="{{playername.jerseyNumber}}" ng-click="model.liked(playername.name, playername.jerseyNumber, playername.nationality, playername.dateOfBirth, playername.contractUntil)" class="material-icons like">grade</i></a>
                 </div>
             </div>
         </div>
         <br><br><br>
     </div>
 
-    <!--<div ng-repeat="playername in model.playernames" class="container player_card_body">-->
-    <!--<div class="container player_card">-->
-    <!--<div class="left_player_card">-->
-    <!--<ul class="demo-list-item mdl-list">-->
-    <!--<li class="mdl-list__item">-->
-    <!--<span class="mdl-list__item-primary-content player_name">-->
-    <!--{{playername.name}}-->
-    <!--</span>-->
-    <!--</li></ul>-->
-    <!--</div>-->
-    <!--<div class="right_player_card">-->
-    <!--{{playername.jerseyNumber}}-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container player_card_details">-->
-    <!--<div class="row_details">-->
-    <!--<div class="col col_border">DoB:-->
-    <!--{{playername.dateOfBirth}}</div>-->
-    <!--<div class="col col_border">Contract Until:-->
-    <!--{{playername.contractUntil}}</div>-->
-    <!--<div class="col col_border">Nationality:-->
-    <!--{{playername.nationality}}</div>-->
-    <!--<div class="last">-->
-    <!--<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-">-->
-    <!--<input type="checkbox" id="switch-1" class="mdl-switch__input">-->
-    <!--<span class="mdl-switch__label"></span>-->
-    <!--</label>-->
-    <!--</div>-->
-
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <div class="row navbar-text">
                 <div class="col-xs-3 text-center">
-                    <a href="../user/profile.view.client.html">
+                    <a href="#/profile/userId">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>

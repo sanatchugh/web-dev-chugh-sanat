@@ -12,7 +12,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">My List</a>
+                <a class="navbar-brand" href="#">
+                    <a href="#/home/{{model.userId}}">
+                    <span class="glyphicon glyphicon-home"></span>
+                    </a>
+                    <span>My List</span>
+                </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -36,40 +41,35 @@
     <!-- Colored mini FAB button -->
     <div class="container">
         <a class="add_button">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+            <button ng-click="model.leaguechooser()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <i class="material-icons">add</i>
             </button>
         </a>
     </div>
 
-    <div ng-repeat="playername in model.playernames" class="container player_card_body">
-        <div class="container player_card">
-            <div class="left_player_card">
-                <ul class="demo-list-item mdl-list">
-                    <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content player_name">
-      {{playername.name}}
-    </span>
-                    </li>
-                </ul>
-            </div>
-            <div class="right_player_card">
-                {{playername.jerseyNumber}}
-            </div>
-        </div>
-        <div class="container player_card_details">
-            <div class="row_details">
-                <div class="col">
-                    {{playername.jerseyNumber}}
+    <div class="container">
+        <div ng-repeat="playername in model.userplayerlist" class="demo-card-event mdl-card mdl-shadow--2dp">
+            <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        <span class="player_name">{{playername.name}}</span>
+                    </a>
                 </div>
-                <div class="col">
-                    {{playername.dateOfBirth}}
-                </div>
-                <div class="last">
-                    {{playername.nationality}}
+                <div class="mdl-card__title mdl-card--expand player_details">
+                    <h6>
+                        Jersey - <span class="jersey_number">{{playername.jerseyNumber}}</span> <br><br>
+                        Nationality - <span class="nationality">{{playername.nationality}}</span><br><br><br>
+                        Date Of Birth - <span class="dateofbirth">{{playername.dateOfBirth}}</span><br><br>
+                        Contract Until - <span class="contractuntil">{{playername.contractUntil}}</span>
+                    </h6>
+                    <div class="mdl-layout-spacer"></div>
+                    <a> <i id="{{playername.jerseyNumber}}"
+                           ng-click="model.liked(playername.name, playername.jerseyNumber, playername.nationality, playername.dateOfBirth, playername.contractUntil)"
+                           class="material-icons like">grade</i></a>
                 </div>
             </div>
         </div>
+        <br><br><br>
     </div>
 
 
@@ -77,7 +77,7 @@
         <div class="container">
             <div class="row navbar-text">
                 <div class="col-xs-3 text-center">
-                    <a href="#/profile/userId">
+                    <a href="#/profile/{{model.userId}}">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
                 </div>

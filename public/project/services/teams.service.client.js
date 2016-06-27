@@ -7,9 +7,12 @@
     function TeamService() {
         var vm=this;
         var teamData, teamUrl;
+        var playerlist = [];
         var api = {
             findTeams: findTeams,
-            findTeamURL: findTeamURL
+            findTeamURL: findTeamURL,
+            storeUserPlayerList: storeUserPlayerList,
+            getUserPlayerList: getUserPlayerList
         };
         return api;
 
@@ -25,9 +28,6 @@
                     break
                 case "SerieA":
                     url='http://api.football-data.org/v1/soccerseasons/401/teams'
-                    break
-                case "LaLiga":
-                    url='http://api.football-data.org/v1/soccerseasons/394/teams'
                     break
                 case "Ligue1":
                     url='http://api.football-data.org/v1/soccerseasons/396/teams'
@@ -90,6 +90,32 @@
                 type: 'GET'
             }).responseText);
             return(playerdata.players);
+        }
+
+        function storeUserPlayerList(userId, teamcode, league, name, num, nationality, dob, contractuntil) {
+            var newPlayer = {
+                _id: (new Date()).getTime()+"",
+                name: name,
+                num:num,
+                nationality: nationality,
+                dob: dob,
+                contractuntil: contractuntil,
+                teamcode: teamcode,
+                league: league,
+                developerId: userId
+            };
+            playerlist.push(newPlayer);
+
+        }
+
+        function getUserPlayerList(userId) {
+            var resultSet = [];
+            for(var i in playerlist) {
+                if(playerlist[i].developerId === userId) {
+                    resultSet.push(playerlist[i]);
+                }
+            }
+            return resultSet;
         }
     }
 })();
