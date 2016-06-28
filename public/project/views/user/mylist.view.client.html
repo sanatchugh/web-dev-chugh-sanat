@@ -58,12 +58,30 @@
                         Jersey - <span class="jersey_number">{{playername.num}}</span> <br><br>
                         Nationality - <span class="nationality">{{playername.nationality}}</span><br><br><br>
                         Date Of Birth - <span class="dateofbirth">{{playername.dob}}</span><br><br>
-                        Contract Until - <span class="contractuntil">{{playername.contractuntil}}</span>
+                        Contract Until - <span class="contractuntil">{{playername.contractuntil}}</span><br><br><br>
+                        My Notes - <span class="contractuntil">{{playername.note}}</span><br><br>
+                        <textarea ng-show="myNote" ng-model="notes" rows="5" cols="50">
+                        {{playername.note}}</textarea>
+                        <a>
+                            <i ng-click="model.toggle()"
+                               class="material-icons like">edit</i>
+                        </a>
+                        <a>
+                            <i ng-click="model.updateNote(playername.num, notes)"
+                               class="material-icons like">check</i>
+                        </a>
+                        <a>
+                            <i ng-click="model.deleteNote(playername.num, notes)"
+                               class="material-icons like">delete</i>
+                        </a>
                     </h6>
                     <div class="mdl-layout-spacer"></div>
-                    <a> <i id="{{playername.num}}"
-                           ng-click="model.liked(playername.name, playername.num, playername.nationality, playername.dob, playername.contractuntil)"
-                           class="material-icons like">grade</i></a>
+
+                    <a>
+                        <i ng-click="model.deletePlayer(playername.name)"
+                           class="material-icons like">delete</i>
+                    </a>
+
                 </div>
             </div>
         </div>

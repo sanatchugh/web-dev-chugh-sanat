@@ -4,6 +4,11 @@ module.exports = function(app) {
 
     app.post("/api/user/:userId/player", storeUserPlayerList);
     app.get("/api/user/:userId/player", getUserPlayerList);
+    app.delete("/api/player/:name", deletePlayer);
+    app.put("/api/player/:id/:number/:notes", updateNote);
+    app.delete("/api/player/:id/:number/", deleteNote);
+
+
 
     function storeUserPlayerList(req, res){
         var newPlayer = req.body;
@@ -24,4 +29,43 @@ module.exports = function(app) {
         res.json(result);
     }
 
+    function deletePlayer(req, res){
+        var name = req.params.name;
+        for(var i in playerlist){
+            if(name == playerlist[i].name){
+                playerlist.splice(i,1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(400);
+    }
+
+    function updateNote(req, res) {
+        var id = req.params.id;
+        var number = req.params.number;
+        var notes = req.params.notes;
+        for(var i in playerlist){
+            if(id == playerlist[i].developerId && number == playerlist[i].num){
+                playerlist[i].note=notes;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(400);
+
+    }
+    function deleteNote(req, res) {
+        var id = req.params.id;
+        var number = req.params.number;
+        for(var i in playerlist){
+            if(id == playerlist[i].developerId && number == playerlist[i].num){
+                playerlist[i].note="";
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(400);
+
+    }
 };

@@ -3,17 +3,21 @@
         .module("ProjectApp")
         .controller("MylistController", MylistController);
 
-    function MylistController($location, $routeParams, UserService, TeamService) {
+    function MylistController($location, $routeParams, TeamService, $route, $scope) {
         var vm = this;
         vm.userId = $routeParams.id;
         vm.leaguechooser=leaguechooser;
+        vm.deletePlayer=deletePlayer;
+        vm.updateNote=updateNote;
+        vm.deleteNote=deleteNote;
+        vm.toggle=toggle;
+        $scope.myNote=false;
 
+        
         function init() {
-            console.log(TeamService.getUserPlayerList(vm.userId));
             TeamService
                 .getUserPlayerList(vm.userId)
                 .then(function (response) {
-                        console.log(response.data);
                         vm.userplayerlist=response.data;
 
                     },
@@ -27,6 +31,48 @@
             $location.url("/team/league_chooser/"+vm.userId);
             
         }
+
+        function deletePlayer(name) {
+            TeamService
+                .deletePlayer(name)
+                .then(function (response) {
+                        $location.url("mylist/"+vm.userId);
+                        $route.reload();
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
+        }
+
+        function updateNote(num, notes) {
+            TeamService
+                .updateNote(vm.userId, num, notes)
+                .then(function (response) {
+                        $location.url("mylist/"+vm.userId);
+                        $route.reload();
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
+        }
+        
+        function deleteNote(num) {
+            TeamService
+                .deleteNote(vm.userId, num)
+                .then(function (response) {
+                        $location.url("mylist/"+vm.userId);
+                        $route.reload();
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
+        }
+
+        function toggle() {
+            $scope.myNote=!$scope.myNote;
+
+        }
+
     }
 
 })();

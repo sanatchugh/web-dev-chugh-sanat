@@ -11,7 +11,10 @@
             findTeams: findTeams,
             findTeamURL: findTeamURL,
             storeUserPlayerList: storeUserPlayerList,
-            getUserPlayerList: getUserPlayerList
+            getUserPlayerList: getUserPlayerList,
+            deletePlayer: deletePlayer,
+            updateNote: updateNote,
+            deleteNote: deleteNote
         };
         return api;
 
@@ -105,13 +108,24 @@
             };
             var url = "/api/user/"+userId+"/player";
             return $http.post(url, newPlayer);
-            //playerlist.push(newPlayer);
 
         }
 
         function getUserPlayerList(userId) {
             var url = "/api/user/" + userId + "/player";
             return $http.get(url);
+        }
+        function deletePlayer(name) {
+            var url = "/api/player/"+name;
+            return $http.delete(url);
+        }
+        function updateNote(id, number, notes) {
+            var url = "/api/player/"+id+"/"+number+"/"+notes;
+            return $http.put(url);
+        }
+        function deleteNote(id, number) {
+            var url = "/api/player/"+id+"/"+number;
+            return $http.delete(url);
         }
     }
 })();
