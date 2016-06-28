@@ -33,8 +33,28 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container">
-        <div ng-repeat="playername in model.playernames" class="demo-card-event mdl-card mdl-shadow--2dp">
+    <div class="container testsearch">
+        <table>
+            <tr>
+                <td align="right">Search :</td>
+                <td><input ng-model="query[queryBy]" /></td>
+            </tr>
+            <tr>
+                <td align="right">Search By :</td>
+                <td>
+                    <select class="selectbox" ng-model="queryBy">
+                        <option value="$"></option>
+                        <option value="name">Name</option>
+                        <option value="jerseyNumber">Jersey Number</option>
+                        <option value="nationality">Nationality</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container playercardlist">
+        <div ng-repeat="playername in model.playernames | filter:query" class="demo-card-event mdl-card mdl-shadow--2dp">
             <div class="demo-card-event mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
