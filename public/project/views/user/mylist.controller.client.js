@@ -9,13 +9,21 @@
         vm.leaguechooser=leaguechooser;
 
         function init() {
-            vm.userplayerlist= TeamService.getUserPlayerList(vm.userId);
-            console.log(vm.userplayerlist);
+            console.log(TeamService.getUserPlayerList(vm.userId));
+            TeamService
+                .getUserPlayerList(vm.userId)
+                .then(function (response) {
+                        console.log(response.data);
+                        vm.userplayerlist=response.data;
+
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
         }
         init();
         
         function leaguechooser() {
-            console.log("/team/league_chooser/"+vm.userId);
             $location.url("/team/league_chooser/"+vm.userId);
             
         }

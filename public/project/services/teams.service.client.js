@@ -4,10 +4,9 @@
         .factory("TeamService", TeamService);
 
 
-    function TeamService() {
+    function TeamService($http) {
         var vm=this;
         var teamData, teamUrl;
-        var playerlist = [];
         var api = {
             findTeams: findTeams,
             findTeamURL: findTeamURL,
@@ -104,18 +103,15 @@
                 league: league,
                 developerId: userId
             };
-            playerlist.push(newPlayer);
+            var url = "/api/user/"+userId+"/player";
+            return $http.post(url, newPlayer);
+            //playerlist.push(newPlayer);
 
         }
 
         function getUserPlayerList(userId) {
-            var resultSet = [];
-            for(var i in playerlist) {
-                if(playerlist[i].developerId === userId) {
-                    resultSet.push(playerlist[i]);
-                }
-            }
-            return resultSet;
+            var url = "/api/user/" + userId + "/player";
+            return $http.get(url);
         }
     }
 })();

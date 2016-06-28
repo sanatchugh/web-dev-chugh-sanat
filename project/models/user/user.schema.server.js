@@ -13,7 +13,7 @@ module.exports = function() {
         phone       : String,
         players    : [{type: mongoose.Schema.Types.ObjectId, ref: "Player"}],
         dateCreated : {type: Date, default : Date.now}
-    }, {collection : "assignment.user"});
+    }, {collection : "project.user"});
 
     return UserSchema;
 };

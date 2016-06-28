@@ -57,14 +57,14 @@
                 </div>
                 <div class="mdl-card__title mdl-card--expand player_details">
                     <h6>
-                        Jersey - <span class="jersey_number">{{playername.jerseyNumber}}</span> <br><br>
+                        Jersey - <span class="jersey_number">{{playername.num}}</span> <br><br>
                         Nationality - <span class="nationality">{{playername.nationality}}</span><br><br><br>
-                        Date Of Birth - <span class="dateofbirth">{{playername.dateOfBirth}}</span><br><br>
-                        Contract Until - <span class="contractuntil">{{playername.contractUntil}}</span>
+                        Date Of Birth - <span class="dateofbirth">{{playername.dob}}</span><br><br>
+                        Contract Until - <span class="contractuntil">{{playername.contractuntil}}</span>
                     </h6>
                     <div class="mdl-layout-spacer"></div>
-                    <a> <i id="{{playername.jerseyNumber}}"
-                           ng-click="model.liked(playername.name, playername.jerseyNumber, playername.nationality, playername.dateOfBirth, playername.contractUntil)"
+                    <a> <i id="{{playername.num}}"
+                           ng-click="model.liked(playername.name, playername.num, playername.nationality, playername.dob, playername.contractuntil)"
                            class="material-icons like">grade</i></a>
                 </div>
             </div>
