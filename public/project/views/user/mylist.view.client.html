@@ -12,12 +12,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
-                    <a href="#/home/{{model.userId}}">
+                <a class="navbar-brand" href="#/home/{{model.userId}}">
                     <span class="glyphicon glyphicon-home"></span>
-                    </a>
-                    <span>My List</span>
                 </a>
+                <span class="navbar-brand" href="#">My List</span>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,7 +37,7 @@
     </nav>
 
     <!-- Colored mini FAB button -->
-    <div class="container">
+    <div class="container addbuttonpadding">
         <a class="add_button">
             <button ng-click="model.leaguechooser()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <i class="material-icons">add</i>
@@ -48,7 +46,7 @@
     </div>
 
     <div class="container">
-        <div ng-repeat="playername in model.userplayerlist" class="demo-card-event mdl-card mdl-shadow--2dp">
+        <div ng-repeat="playername in model.userplayerlist" class="demo-card-event mdl-card mdl-shadow--2dp playercardpadding">
             <div class="demo-card-event mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

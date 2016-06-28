@@ -12,7 +12,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Players</a>
+                <a class="navbar-brand" href="#/home/{{model.userId}}">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+                <span class="navbar-brand" href="#">Players</span>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -54,7 +57,7 @@
     </div>
 
     <div class="container playercardlist">
-        <div ng-repeat="playername in model.playernames | filter:query" class="demo-card-event mdl-card mdl-shadow--2dp">
+        <div ng-repeat="playername in model.playernames | filter:query" class="demo-card-event mdl-card mdl-shadow--2dp playercardpadding">
             <div class="demo-card-event mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -73,7 +76,6 @@
                 </div>
             </div>
         </div>
-        <br><br><br>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">

@@ -302,6 +302,13 @@ body {
     padding-top: 20px;
 }
 
+.demo-card-event.mdl-card.mdl-shadow--2dp.playercardpadding{
+    margin-bottom: 20px;
+}
+.container.addbuttonpadding{
+    padding-bottom: 20px;
+}
+
 
 
 
