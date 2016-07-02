@@ -44,9 +44,9 @@
                     });
         }
 
-        function updateNote(num, notes) {
+        function updateNote(id, notes) {
             TeamService
-                .updateNote(vm.userId, num, notes)
+                .updateNote(vm.userId, id, notes)
                 .then(function (response) {
                         $location.url("mylist/"+vm.userId);
                         $route.reload();
@@ -56,9 +56,9 @@
                     });
         }
         
-        function deleteNote(num) {
+        function deleteNote(id) {
             TeamService
-                .deleteNote(vm.userId, num)
+                .deleteNote(vm.userId, id)
                 .then(function (response) {
                         $location.url("mylist/"+vm.userId);
                         $route.reload();

@@ -5,8 +5,8 @@ module.exports = function(app) {
     app.post("/api/user/:userId/player", storeUserPlayerList);
     app.get("/api/user/:userId/player", getUserPlayerList);
     app.delete("/api/player/:name", deletePlayer);
-    app.put("/api/player/:id/:number/:notes", updateNote);
-    app.delete("/api/player/:id/:number/", deleteNote);
+    app.put("/api/player/:id/:playerId/:notes", updateNote);
+    app.delete("/api/player/:id/:playerId/", deleteNote);
 
 
 
@@ -43,10 +43,10 @@ module.exports = function(app) {
 
     function updateNote(req, res) {
         var id = req.params.id;
-        var number = req.params.number;
+        var playerId = req.params.playerId;
         var notes = req.params.notes;
         for(var i in playerlist){
-            if(id == playerlist[i].developerId && number == playerlist[i].num){
+            if(id == playerlist[i].developerId && playerId == playerlist[i]._id){
                 playerlist[i].note=notes;
                 res.sendStatus(200);
                 return;
@@ -57,9 +57,10 @@ module.exports = function(app) {
     }
     function deleteNote(req, res) {
         var id = req.params.id;
-        var number = req.params.number;
+        var playerId = req.params.playerId;
+        console.log(playerId);
         for(var i in playerlist){
-            if(id == playerlist[i].developerId && number == playerlist[i].num){
+            if(id == playerlist[i].developerId && playerId == playerlist[i]._id){
                 playerlist[i].note="";
                 res.sendStatus(200);
                 return;

@@ -119,12 +119,12 @@
             var url = "/api/player/"+name;
             return $http.delete(url);
         }
-        function updateNote(id, number, notes) {
-            var url = "/api/player/"+id+"/"+number+"/"+notes;
+        function updateNote(id, playerId, notes) {
+            var url = "/api/player/"+id+"/"+playerId+"/"+notes;
             return $http.put(url);
         }
-        function deleteNote(id, number) {
-            var url = "/api/player/"+id+"/"+number;
+        function deleteNote(id, playerId) {
+            var url = "/api/player/"+id+"/"+playerId;
             return $http.delete(url);
         }
     }

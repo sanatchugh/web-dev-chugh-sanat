@@ -55,13 +55,13 @@
 <div class="container login_element">
     <form action="#">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input ng-model="username" class="mdl-textfield__input" type="text" id="username">
-            <label class="mdl-textfield__label" for="username">Username...</label>
+            <input ng-model="username" class="mdl-textfield__input" type="text" id="username" placeholder="Username...">
+            <label class="mdl-textfield__label" for="username"></label>
         </div>
         <br>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input ng-model="password" class="mdl-textfield__input" type="password" id="password">
-            <label class="mdl-textfield__label" for="password">Password...</label>
+            <input ng-model="password" class="mdl-textfield__input" type="password" id="password" placeholder="Password...">
+            <label class="mdl-textfield__label" for="password"></label>
         </div>
     </form>
     <a ng-click="model.login(username, password)" class="btn btn-primary btn-block">Log Me In</a>
